@@ -1,4 +1,4 @@
-// General scripts or scripts common to all pages. 
+// General scripts or scripts common to all pages.
 // Logout
 const logoutBtn = document.getElementById("logoutBtn");
 
