@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+    <script src="https://cdn.tiny.cloud/1/pwe3wkwl6n86inq3rydx5rbkg4pk0idx7bfz9form6fvszqn/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+    <div id="editPostContainer"></div>
+    <script>
+        const postId = new URLSearchParams(window.location.search).get('id');
+
+        async function loadPostForEditing() {
+            try {
+                const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+                const post = await response.json();
+
+                document.getElementById("editPostContainer").innerHTML = `
+                    <form id="editPostForm">
+                        <input type="text" id="editTitle" value="${post.title}">
+                        <textarea id="editContent">${post.content}</textarea>
+                        <button type="button" onclick="submitEdit()">Submit Edit</button>
+                    </form>
+                `;
+                
+                tinymce.init({
+                    selector: '#editContent'
+                });
+            } catch (error) {
+                console.error("Error fetching post for editing:", error);
+            }
+        }
+
+        async function submitEdit() {
+            const title = document.getElementById("editTitle").value;
+            const content = tinymce.get("editContent").getContent();
+
+            try {
+                const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify({ title, content })
+                });
+
+                if (response.ok) {
+                    alert("Post updated successfully!");
+                    window.location.href = `view-post.html?id=${postId}`;
+                } else {
+                    const errorData = await response.json();
+                    alert(`Failed to update post: ${errorData.message || "Unknown error"}`);
+                }
+            } catch (error) {
+                console.error("Error updating post:", error);
+            }
+        }
+
+        loadPostForEditing();
+    </script>
+</body>
+</html>

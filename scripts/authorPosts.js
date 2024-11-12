@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <p>${post.content}</p>
                     <small>Author: ${post.author.username}</small>
                     <button onclick="window.location.href='pages/view-post.html?id=${post.id}'">View</button>
-                    <button onclick="window.location.href='editPost.html?id=${post.id}'">Edit</button>
+                    <button onclick="window.location.href='pages/edit-post.html?id=${post.id}'">Edit</button>
                     <button onclick="deletePost(${post.id})">Delete</button>
                 </div>
             `).join('');
