@@ -27,3 +27,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error loading posts:", error);
     }
 });
+
+async function deletePost(postId) {
+    if (!confirm("Are you sure you want to delete this post?")) return;
+    try {
+        const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        if (response.ok) {
+            alert("Post deleted successfully!");
+            window.location.href = "./index.html";
+        } else {
+            const errorData = await response.json();
+            alert(`Failed to delete post: ${errorData.message || "Unknown error"}`);
+        }
+    } catch (error) {
+        console.error("Error deleting post:", error);
+    }
+}
+
+
