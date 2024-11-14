@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 alert("Post created successfully!");
-                window.location.href = "./index.html";
+                window.location.href = "../index.html";
             } else {
                 const errorData = await response.json();
                 alert(`Failed to create post: ${errorData.message || "Unknown error"}`);
