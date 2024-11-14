@@ -54,15 +54,25 @@
   </nav>
 
 
-  <main class="flex-grow-1">
-    <header>
-      <h1>New Post</h1>
+  <main class="flex-grow-1 container mt-5 mb-5">
+    <header class="mb-4">
+      <h1 class="display-5 text-center">Create New Post</h1>
     </header>
   
-    <form id="newPostForm">
-      <input type="text" id="title" placeholder="Post Title" required>
-      <textarea id="content"></textarea>
-      <button type="submit">Save Post</button>
+    <form id="newPostForm" class="p-4 border rounded bg-light shadow-sm">
+      <div class="mb-3">
+          <label for="title" class="form-label">Post Title</label>
+          <input type="text" id="title" class="form-control" placeholder="Enter title here" required>
+      </div>
+
+      <div class="mb-3">
+          <label for="content" class="form-label">Post Content</label>
+          <textarea id="content"></textarea>
+      </div>
+
+      <div class="text-end">
+          <button type="submit" class="btn btn-success">Publish</button>
+      </div>
     </form>
   </main>
 
