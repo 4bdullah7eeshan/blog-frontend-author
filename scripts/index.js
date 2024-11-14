@@ -43,8 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
       signupLink.style.display = "block";
       logoutBtn.style.display = "none";
       if (newPostLink) newPostLink.style.display = "none";
-      window.location.href = "./pages/signin.html";
-
+      
+      const currentPage = window.location.pathname;
+      if (!currentPage.endsWith("signin.html") && !currentPage.endsWith("signup.html")) {
+          window.location.href = "./pages/signin.html";
+      }
     }
     
 });
