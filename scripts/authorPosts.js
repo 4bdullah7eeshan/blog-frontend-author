@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         ${posts.map(post => `
                             <tr>
                                 <td>${post.title}</td>
-                                <td>${post.content.slice(0, 100)}...</td>
+                                <td>${post.content.slice(0, 50)}...</td>
                                 <td>${post.author.username}</td>
                                 <td>
                                     <button class="btn btn-primary btn-sm me-1" onclick="window.location.href='pages/view-post.html?id=${post.id}'">View</button>
