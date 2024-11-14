@@ -14,11 +14,11 @@
     <script src="https://cdn.tiny.cloud/1/pwe3wkwl6n86inq3rydx5rbkg4pk0idx7bfz9form6fvszqn/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="./index.html">
-            Blog
+            <i class="fa-solid fa-blog"></i> Blog
           </a>
     
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,9 @@
     </nav>
     
 
-    <div id="editPostContainer"></div>
+    <main class="flex-grow-1" id="editPostContainer">
+
+    </main>
 
     <footer class="container-fluid py-3 bg-dark text-white">
         <div class="d-flex justify-content-between align-items-center">
@@ -60,7 +62,7 @@
             </a>
         </div>
     </footer>
-    
+
     <script>
         const postId = new URLSearchParams(window.location.search).get('id');
 
