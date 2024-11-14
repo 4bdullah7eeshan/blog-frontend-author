@@ -10,22 +10,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (response.ok) {
             const posts = await response.json();
-            postsContainer.innerHTML = posts.map(post => `
-                <div class="col-12 col-md-6 col-lg-4 mb-4"> <!-- Bootstrap grid classes -->
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">${post.title}</h5>
-                            <p class="card-text">${post.content.slice(0, 100)}...</p>
-                            <small>Author: ${post.author.username}</small>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary" onclick="window.location.href='pages/view-post.html?id=${post.id}'">View</button>
-                            <button class="btn btn-warning" onclick="window.location.href='pages/edit-post.html?id=${post.id}'">Edit</button>
-                            <button class="btn btn-danger" onclick="deletePost(${post.id})">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            postsContainer.innerHTML = `
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Author</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${posts.map(post => `
+                            <tr>
+                                <td>${post.title}</td>
+                                <td>${post.content.slice(0, 100)}...</td>
+                                <td>${post.author.username}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm me-1" onclick="window.location.href='pages/view-post.html?id=${post.id}'">View</button>
+                                    <button class="btn btn-warning btn-sm me-1" onclick="window.location.href='pages/edit-post.html?id=${post.id}'">Edit</button>
+                                    <button class="btn btn-danger btn-sm" onclick="deletePost(${post.id})">Delete</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
         } else {
             alert("Failed to load posts.");
         }
