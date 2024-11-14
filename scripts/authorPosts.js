@@ -11,13 +11,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (response.ok) {
             const posts = await response.json();
             postsContainer.innerHTML = posts.map(post => `
-                <div class="post">
-                    <h2>${post.title}</h2>
-                    <p>${post.content}</p>
-                    <small>Author: ${post.author.username}</small>
-                    <button onclick="window.location.href='pages/view-post.html?id=${post.id}'">View</button>
-                    <button onclick="window.location.href='pages/edit-post.html?id=${post.id}'">Edit</button>
-                    <button onclick="deletePost(${post.id})">Delete</button>
+                <div class="col-12 col-md-6 col-lg-4 mb-4"> <!-- Bootstrap grid classes -->
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${post.title}</h5>
+                            <p class="card-text">${post.content.slice(0, 100)}...</p>
+                            <small>Author: ${post.author.username}</small>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" onclick="window.location.href='pages/view-post.html?id=${post.id}'">View</button>
+                            <button class="btn btn-warning" onclick="window.location.href='pages/edit-post.html?id=${post.id}'">Edit</button>
+                            <button class="btn btn-danger" onclick="deletePost(${post.id})">Delete</button>
+                        </div>
+                    </div>
                 </div>
             `).join('');
         } else {
