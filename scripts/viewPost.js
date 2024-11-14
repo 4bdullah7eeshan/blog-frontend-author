@@ -12,7 +12,7 @@ const formatDate = (dateString) => {
 
 async function loadPost() {
     try {
-        const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+        const response = await fetch(`https://blog-api-f102.onrender.com/posts/${postId}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }

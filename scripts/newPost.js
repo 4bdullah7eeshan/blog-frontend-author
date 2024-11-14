@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const response = await fetch("http://localhost:3000/posts", {
+            const response = await fetch("https://blog-api-f102.onrender.com/posts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
