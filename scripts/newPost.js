@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                alert("Post created successfully!");
+                alert("Post published successfully!");
                 window.location.href = "../index.html";
             } else {
                 const errorData = await response.json();
